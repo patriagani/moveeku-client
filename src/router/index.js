@@ -27,6 +27,26 @@ const routes = [
     path: '/checkout',
     name: 'Checkout',
     component: () => import(/* webpackChunkName: "about" */ '../views/Checkout.vue')
+  },
+  {
+    path: '/movielist',
+    name: 'MovieList',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MovieList.vue')
+  },
+  {
+    path: '/watchmovie',
+    name: 'WatchMovie',
+    component: () => import(/* webpackChunkName: "about" */ '../views/WatchMovie.vue')
+  },
+  {
+    path: '/topup',
+    name: 'TopUp',
+    component: () => import(/* webpackChunkName: "about" */ '../views/TopUp.vue')
+  },
+  {
+    path: '/review',
+    name: 'Review',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Review.vue')
   }
 ]
 
