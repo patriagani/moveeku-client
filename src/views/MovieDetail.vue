@@ -3,29 +3,27 @@
       <div class="container">
             <div class="row">
                 <div class="six columns">
-                    <img src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg" alt="">
+                    <img :src="movie.data.Poster" :alt="movie.data.Title">
                     <br><br>
                     <a class="button button-primary" style="width: 300px;" href="#">Rent Now for 1000 MVP</a>
                 </div>
                 <div class="six columns" align="left">
-                    <h4>Guardians of the Galaxy Vol. 2</h4>
+                    <h4>{{movie.data.Title}}</h4>
                     <p>
-                        Director: James Gunn <br>
-                        Released: 05 May 2017 <br>
-                        Runtime: 136 min <br>
-                        Genre: Action, Adventure, Comedy, Sci-Fi <br>
-                        Language: English <br>
-                        Actors: Chris Pratt, Zoe Saldana, Dave Bautista, Vin Diesel
+                        Director: {{movie.data.Director}} <br>
+                        Released: {{movie.data.Released}} <br>
+                        Runtime: {{movie.data.Runtime}} <br>
+                        Genre: {{movie.data.Genre}} <br>
+                        Language: {{movie.data.Language}} <br>
+                        Actors: {{movie.data.Actors}}
                     </p>
-                    <p>The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's encounter with his father the ambitious celestial being Ego.</p>
+                    <p>{{movie.data.Plot}}</p>
                     <div class="rating">
                         <h5>
                             Rating
                         </h5>
-                        <p>
-                            Internet Movie Database: 7,6/10 <br>
-                            Rotten Tomatoes: 85% <br>
-                            Metacritic: 67/100
+                        <p v-for="rating in movie.data.Ratings" :key="rating">
+                            {{rating.Source}}: {{rating.Value}}
                         </p>
                     </div>
                 </div>
@@ -75,11 +73,37 @@
 
 <script>
 import Footer from '@/components/Footer.vue'
+import axios from 'axios'
 
 export default {
     name: 'MovieDetail',
     components: {
         Footer
+    },
+
+    data: () => {
+      return {
+          movie: {}
+      }
+    },
+
+    props: ['url', 'isLogin'],
+
+    methods: {
+        getMovie() {
+            axios.get(`${this.url}/movies/${this.$route.params.movieId}`)
+                .then((response) => {
+                    this.movie = response.data
+                })
+                .catch((error) => {
+                    console.log(error.message)
+                })
+
+        }
+    },
+
+    created() {
+        this.getMovie()
     }
 }
 </script>

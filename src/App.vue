@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Navbar/>
-    <router-view/>
+    <Navbar @userlogout="userLogout" :isLogin="isLogin" :url="url"/>
+    <router-view  @userlogin="userLogin" :isLogin="isLogin" :url="url"/>
   </div>
 </template>
 
@@ -36,6 +36,29 @@ export default {
   name: 'Home',
   components: {
     Navbar
+  },
+
+  data: () => {
+    return {
+      url: 'http://localhost:3000',
+      isLogin: false
+    }
+  },
+
+  methods: {
+    userLogin() {
+      this.isLogin = true
+    },
+
+    userLogout() {
+      this.isLogin = false
+    }
+  },
+  created() {
+    if (localStorage.id) {
+      this.isLogin = true
+    }
+
   }
 }
 </script>

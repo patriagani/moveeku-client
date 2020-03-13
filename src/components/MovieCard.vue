@@ -1,9 +1,15 @@
 <template>
     <div style="margin: 10px; padding-top:15px; border: solid; border-width: thin; width: 250px; height: 450px;">
-        <img alt="Vue logo" width="220px" src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg">
+        <img style="width: 220px; height: 336px;" :alt="movie.data.Title" width="220px" :src="movie.data.Poster">
         <strong>
-            <p style="margin-bottom: 10px; font-size: 16px;">The Guardian of The Galaxy Volume 2</p>  
+            <p style="margin-bottom: 10px; font-size: 16px;"><router-link style="color: black;" :to="{ path: `/detail/${movie._id}` }" >{{movie.data.Title}}</router-link></p>  
         </strong>
         <a class="button button-primary" style="width: 220px" href="#">Rent Now For 1000 MVP</a>
     </div>
 </template>
+
+<script>
+export default {
+    props: ['movie'],
+}
+</script>>
