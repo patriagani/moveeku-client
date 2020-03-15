@@ -6,32 +6,24 @@
     <div class="container">
       <div class="row">
         <div class="three columns">
-          <p style="margin-bottom: 10px; padding: 10px; font-size: 12px;">Guardian of The Galaxy Vol 2</p>
-          <p style="margin-bottom: 10px; padding: 10px; font-size: 12px;">Doctor Strange 2</p>
-          <p style="margin-bottom: 10px; padding: 10px; font-size: 12px;"> Black Panther</p>
+          <p v-for="transaction in transactions" :key="transaction" style="margin-bottom: 10px; padding: 10px; font-size: 12px;">{{transaction.movie.data.Title}}</p>
         </div>
         <div class="three columns">
-          <p style="margin-bottom: 10px; padding: 10px; font-size: 12px;">22-02-2020</p>
-          <p style="margin-bottom: 10px; padding: 10px; font-size: 12px;">22-02-2020</p>
-          <p style="margin-bottom: 10px; padding: 10px; font-size: 12px;">22-02-2020</p>
+          <p v-for="transaction in transactions" :key="transaction" style="margin-bottom: 10px; padding: 10px; font-size: 12px;">{{transaction.date.slice(0,10)}}</p>
         </div>
         <div class="three columns">
-          <p style="margin-bottom: 10px; padding: 10px; font-size: 12px;">Expired on : 23-02-2020</p>
-          <p style="margin-bottom: 10px; padding: 10px; font-size: 12px;">Expired on : None</p>
-          <p style="margin-bottom: 10px; padding: 10px; font-size: 12px;">Expired on : None</p>
+          <p v-for="exp in expired" :key="exp" style="margin-bottom: 10px; padding: 10px; font-size: 12px;">Expired: {{exp}}</p>
         </div>
         <div class="three columns">
-          <div style="display: flex; justify-content: center;">
-            <a style="margin-left: 10px;" class="button" href="#">Review</a>
-            <a style="margin-left: 10px;" class="button button-primary" href="#">Play Movie</a>
-          </div>
-          <div style="display: flex; justify-content: center;">
-            <a style="margin-left: 10px;" class="button" href="#">Review</a>
-            <a style="margin-left: 10px;" class="button button-primary" href="#">Play Movie</a>
-          </div>
-          <div style="display: flex; justify-content: center;">
-            <a style="margin-left: 10px;" class="button" href="#">Review</a>
-            <a style="margin-left: 10px;" class="button button-primary" href="#">Play Movie</a>
+          <div v-for="play in played" :key="play">
+            <div v-if="play.play" style="display: flex; justify-content: center;">
+              <router-link class="button" style="margin-left: 10px;" :to="{ path: `/review/${play.review}` }">Review</router-link>
+              <a style="margin-left: 10px;" class="button button-primary" href="#">Play Movie</a>
+            </div>
+            <div v-if="!play.play" style="display: flex; justify-content: center;">
+              <router-link class="button" style="margin-left: 10px;" :to="{ path: `/review/${play.review}` }">Review</router-link>
+              <a style="margin-left: 10px;" class="button button-warning" href="#">Movie Expired</a>
+            </div>
           </div>
         </div>
       </div>
@@ -44,11 +36,73 @@
 <script>
 // @ is an alias to /src
 import Footer from '@/components/Footer.vue'
+import axios from 'axios'
 
 export default {
   name: 'Transaction',
   components: {
     Footer
+  },
+
+  data: () => {
+      return {
+          transactions: []
+      }
+    },
+
+  props: ['url', 'isLogin'],
+
+  methods: {
+      getTransactions() {
+
+            const options = {
+                method: 'GET',
+                headers: {'x-auth-token': localStorage.getItem('token')},
+                baseURL: `${this.url}/transactions`,
+            }
+
+            axios(options)
+                .then((response) => {
+                    this.transactions = response.data 
+                })
+                .catch((error) => {
+                    console.log(error.message)
+                })
+
+        }
+  },
+
+  computed: {
+    expired() {
+      return this.transactions.map(function(e) {
+        if (e.playdate) {
+          return new Date
+        }
+        else{
+          return 'none'
+        }
+      })
+    },
+
+    played() {
+      return this.transactions.map(function(e) {
+        if (e.playdate) {
+          return { review: e.review, play: false}
+        }
+        else{
+          return {review: e.review, play: true}
+        }
+      })
+    }
+  },
+
+  created() {
+    if (!this.isLogin) {
+        this.$router.push('/login')
+      }
+    else {
+      this.getTransactions()
+    }
   }
 }
 </script>

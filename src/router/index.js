@@ -24,7 +24,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/MovieDetail.vue')
   },
   {
-    path: '/checkout',
+    path: '/checkout/:movieId',
     name: 'Checkout',
     component: () => import(/* webpackChunkName: "about" */ '../views/Checkout.vue')
   },
@@ -44,12 +44,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/TopUp.vue')
   },
   {
-    path: '/review',
+    path: '/review/:reviewId',
     name: 'Review',
     component: () => import(/* webpackChunkName: "about" */ '../views/Review.vue')
   },
   {
-    path: '/genre',
+    path: '/genre/:genre',
     name: 'Genre',
     component: () => import(/* webpackChunkName: "about" */ '../views/Genre.vue')
   },
