@@ -12,13 +12,13 @@
           <p v-for="transaction in transactions" :key="transaction" style="margin-bottom: 10px; padding: 10px; font-size: 12px;">{{transaction.date.slice(0,10)}}</p>
         </div>
         <div class="three columns">
-          <p v-for="exp in expired" :key="exp" style="margin-bottom: 10px; padding: 10px; font-size: 12px;">Expired: {{exp}}</p>
+          <p v-for="exp in expired" :key="exp" style="margin-bottom: 10px; padding: 10px; font-size: 12px;">Expired: {{exp.slice(0,10)}}</p>
         </div>
         <div class="three columns">
           <div v-for="play in played" :key="play">
             <div v-if="play.play" style="display: flex; justify-content: center;">
               <router-link class="button" style="margin-left: 10px;" :to="{ path: `/review/${play.review}` }">Review</router-link>
-              <a style="margin-left: 10px;" class="button button-primary" href="#">Play Movie</a>
+              <button style="margin-left: 10px;" class="button button-primary" @click="playMovie(play.transaction)">Play Movie</button>
             </div>
             <div v-if="!play.play" style="display: flex; justify-content: center;">
               <router-link class="button" style="margin-left: 10px;" :to="{ path: `/review/${play.review}` }">Review</router-link>
@@ -69,14 +69,36 @@ export default {
                     console.log(error.message)
                 })
 
-        }
+      },
+
+      playMovie(transactionId) {
+
+            const options = {
+                method: 'PATCH',
+                headers: {'x-auth-token': localStorage.getItem('token')},
+                baseURL: `${this.url}/transactions/${transactionId}`,
+                data: {playdate: new Date()}
+            }
+
+            axios(options)
+                .then((response) => {
+                    console.log(response.data)
+                    this.$router.push(`/watchmovie/${transactionId}`)
+                })
+                .catch((error) => {
+                    console.log(error.message)
+                })
+
+      }
   },
 
   computed: {
     expired() {
       return this.transactions.map(function(e) {
         if (e.playdate) {
-          return new Date
+          let date = new Date(e.playdate)
+          date.setDate(date.getDate() + 1)
+          return date.toISOString()
         }
         else{
           return 'none'
@@ -87,10 +109,17 @@ export default {
     played() {
       return this.transactions.map(function(e) {
         if (e.playdate) {
-          return { review: e.review, play: false}
+          let expdate = new Date(e.playdate)
+          expdate.setDate(expdate.getDate() + 1)
+          if (new Date()  > expdate) {
+            return { review: e.review, play: false, transaction: e._id}
+          }
+          else {
+            return {review: e.review, play: true, transaction: e._id}
+          }
         }
         else{
-          return {review: e.review, play: true}
+          return {review: e.review, play: true, transaction: e._id}
         }
       })
     }

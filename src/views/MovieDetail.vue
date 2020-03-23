@@ -29,40 +29,22 @@
                 </div>
             </div>
             <br>
-            <h5>Reviews :</h5>
+            <h5 v-if="reviews.length > 0">Reviews :</h5>
+            <h5 v-if="reviews.length == 0">No Review yet</h5>
             <div align="left" style="display: flex; flex-wrap: wrap; justify-content: center;">
-                <div class="review" style="width: 350px; border: solid; border-width: thin; border-radius: 15px; padding: 20px; margin: 20px;">
-                    <p style="margin-bottom: 0px;">
-                        <strong> Patria Gani </strong> : 4.9/5 <br><br>
-                        Filmnya bagus banget, bikin pengen nonton lagi berkali kali, untung
-                        adan moveekuu, nonton film legal harga murah. Top pokoknya!!!
-                    </p>
-                </div>
-                <div class="review" style="width: 350px; border: solid; border-width: thin; border-radius: 15px; padding: 20px; margin: 20px;">
-                    <p style="margin-bottom: 0px;">
-                        <strong> Patria Gani </strong> : 4.9/5 <br><br>
-                        Filmnya bagus banget, bikin pengen nonton lagi berkali kali, untung
-                        adan moveekuu, nonton film legal harga murah. Top pokoknya!!!
-                    </p>
-                </div>
-                <div class="review" style="width: 350px; border: solid; border-width: thin; border-radius: 15px; padding: 20px; margin: 20px;">
-                    <p style="margin-bottom: 0px;">
-                        <strong> Patria Gani </strong> : 4.9/5 <br><br>
-                        Filmnya bagus banget, bikin pengen nonton lagi berkali kali, untung
-                        adan moveekuu, nonton film legal harga murah. Top pokoknya!!!
-                    </p>
-                </div>
-                <div class="review" style="width: 350px; border: solid; border-width: thin; border-radius: 15px; padding: 20px; margin: 20px;">
-                    <p style="margin-bottom: 0px;">
-                        <strong> Patria Gani </strong> : 4.9/5 <br><br>
-                        Filmnya bagus banget, bikin pengen nonton lagi berkali kali, untung
-                        adan moveekuu, nonton film legal harga murah. Top pokoknya!!!
-                    </p>
+                <div v-for="(review, idx) in reviews" :key="idx" class="review" style="width: 350px; border: solid; border-width: thin; border-radius: 15px; padding: 20px; margin: 20px;">
+                    <div v-if="review.published">
+                        <p style="margin-bottom: 0px;">
+                            <strong> {{review.user.name}} </strong> : {{review.rating}}/5 <br>
+                            Watched on: {{review.date.slice(0,10)}}<br><br>
+                            {{review.review}}
+                        </p>
+                    </div>
                 </div>
             </div>
             <br>
             <div class="pagination">
-                <b>ini nanti pagination reviews</b>
+                <!-- <p>ini nanti paginationnya</p> -->
             </div>
             <br><br>
 
@@ -83,7 +65,8 @@ export default {
 
     data: () => {
       return {
-          movie: {}
+          movie: {},
+          reviews: []
       }
     },
 
@@ -99,11 +82,23 @@ export default {
                     console.log(error.message)
                 })
 
+        },
+
+        getReviews() {
+            axios.get(`${this.url}/reviews/movie/${this.$route.params.movieId}`)
+                .then((response) => {
+                    this.reviews = response.data
+                })
+                .catch((error) => {
+                    console.log(error.message)
+                })
+
         }
     },
 
     created() {
         this.getMovie()
+        this.getReviews()
     }
 }
 </script>

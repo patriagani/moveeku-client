@@ -34,7 +34,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/MovieList.vue')
   },
   {
-    path: '/watchmovie',
+    path: '/watchmovie/:transactionId',
     name: 'WatchMovie',
     component: () => import(/* webpackChunkName: "about" */ '../views/WatchMovie.vue')
   },
