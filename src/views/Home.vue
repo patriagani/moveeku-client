@@ -7,44 +7,51 @@
 
     <br><br>
     
-    <div style="background: blue; padding: 30px;">
-      <h4>Pick Your Genre</h4>
+    <div style="background: blue; padding: 100px;">
+      <h4 style="color:white;">Pick Your Genre</h4>
       <div class="row" style="display: flex; justify-content: center; flex-wrap: wrap;">
           <div style="margin: 10px;">
-            <a class="button" href="#">Anchor button</a>
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Action')}">Action</a>
           </div>
           <div style="margin: 10px;">
-            <a class="button" href="#">Anchor button</a>
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Superhero')}">Superhero</a>
           </div>
           <div style="margin: 10px;">
-            <a class="button" href="#">Anchor button</a>
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Crime')}">Crime</a>
           </div>
           <div style="margin: 10px;">
-            <a class="button" href="#">Anchor button</a>
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Action-Comedy')}">Action Comedy</a>
           </div>
           <div style="margin: 10px;">
-            <a class="button" href="#">Anchor button</a>
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Sci-Fi')}">Sci-Fi</a>
           </div>
           <div style="margin: 10px;">
-            <a class="button" href="#">Anchor button</a>
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Comedy')}">Comedy</a>
           </div>
           <div style="margin: 10px;">
-            <a class="button" href="#">Anchor button</a>
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Animation')}">Animation</a>
           </div>
           <div style="margin: 10px;">
-            <a class="button" href="#">Anchor button</a>
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Drama')}">Drama</a>
           </div>
           <div style="margin: 10px;">
-            <a class="button" href="#">Anchor button</a>
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Fantasy')}">Fantasy</a>
           </div>
           <div style="margin: 10px;">
-            <a class="button" href="#">Anchor button</a>
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Romance')}">Romance</a>
           </div>
           <div style="margin: 10px;">
-            <a class="button" href="#">Anchor button</a>
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Comedy-Romance')}">Comedy Romance</a>
           </div>
           <div style="margin: 10px;">
-            <a class="button" href="#">Anchor button</a>
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Mystery')}">Mystery</a>
+          </div>
+          <div style="margin: 10px;">
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Horror')}">Horror</a>
+          </div><div style="margin: 10px;">
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Thriller')}">Thriller</a>
+          </div><div style="margin: 10px;">
+            <a style="color:white; width:180px;" class="button" @click="() => { this.$router.push('/genre/Adventure')}">Adventure</a>
           </div>
       </div>
     </div>

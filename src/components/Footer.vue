@@ -3,45 +3,45 @@
       <div class="container">
         <div class="row">
           <div class="three columns">
-            <h5 align="left">Installed CLI Plugins</h5>
+            <h5 align="left">Helpful Links</h5>
             <ul align="left">
-              <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-              <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router" target="_blank" rel="noopener">router</a></li>
-              <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex" target="_blank" rel="noopener">vuex</a></li>
-              <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
+              <li><router-link to="/">Home</router-link></li>
+              <li><router-link to="/about">About</router-link></li>
+              <li><router-link to="/login">Sign in</router-link></li>
+              <li><router-link to="/signup">Sign Up</router-link></li>
             </ul>
           </div>
 
           <div class="three columns">
-            <h5 align="left">Essential Links</h5>
+            <h5 align="left">For Action Lover</h5>
             <ul align="left">
-              <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-              <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-              <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-              <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-              <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
+              <li><router-link to="/genre/Action">Action</router-link></li>
+              <li><router-link to="/genre/Superhero">Superhero</router-link></li>
+              <li><router-link to="/genre/Crime">Crime</router-link></li>
+              <li><router-link to="/genre/Action-Comedy">Action-Comedy</router-link></li>
+              <li><router-link to="/genre/Sci-Fi">Sci-Fi</router-link></li>
             </ul>
           </div>
 
           <div class="three columns">
-            <h5 align="left">Ecosystem</h5>
+            <h5 align="left">Family Movie</h5>
             <ul align="left">
-              <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-              <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-              <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-              <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-              <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
+              <li><router-link to="/genre/Comedy">Comedy</router-link></li>
+              <li><router-link to="/genre/Animation">Animation</router-link></li>
+              <li><router-link to="/genre/Drama">Drama</router-link></li>
+              <li><router-link to="/genre/Fantasy">Fantasy</router-link></li>
+              <li><router-link to="/genre/Romance">Romance</router-link></li>
             </ul>
           </div>
 
           <div class="three columns">
-            <h5 align="left">Essential Links</h5>
+            <h5 align="left">Other Genre</h5>
             <ul align="left">
-              <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-              <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-              <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-              <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-              <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
+              <li><router-link to="/genre/Comedy-Romance">Comedy-Romance</router-link></li>
+              <li><router-link to="/genre/Mystery">Mystery</router-link></li>
+              <li><router-link to="/genre/Horror">Horror</router-link></li>
+              <li><router-link to="/genre/Thriller">Thriller</router-link></li>
+              <li><router-link to="/genre/Adventure">Adventure</router-link></li>
             </ul>
           </div>
         </div>
