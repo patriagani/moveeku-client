@@ -4,6 +4,7 @@
         <div class="container">
             <ul>
                 <li><router-link :to="{ path: '/' }">Home</router-link></li>
+                <li><router-link :to="{ path: '/about' }">About</router-link></li>
                 <li v-if="isLogin" ><router-link :to="{ path: '/movielist' }">Movies</router-link></li>
                 <li v-if="isLogin" ><router-link :to="{ path: '/transaction' }">Transaction</router-link></li>
                 <li v-if="isLogin" ><router-link :to="{ path: '/topup' }">Top Up MVP</router-link></li>
