@@ -40,7 +40,7 @@ export default {
 
   data: () => {
     return {
-      url: 'http://localhost:3000',
+      url: process.env.API_URL,
       isLogin: false
     }
   },
