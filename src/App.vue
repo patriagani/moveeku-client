@@ -40,7 +40,7 @@ export default {
 
   data: () => {
     return {
-      url: process.env.API_URL,
+      url: process.env.VUE_APP_API_URL,
       isLogin: false
     }
   },
